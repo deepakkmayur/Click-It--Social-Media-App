@@ -1,0 +1,195 @@
+.ProfileCard{
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 1rem;
+  overflow-x: clip;
+  background-color: white;
+
+}
+
+.ProfileImage{
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.ProfileImage>img:nth-of-type(1){
+   width: 100%;
+}
+
+.ProfileImage>img:nth-of-type(2){
+width: 6rem;
+border-radius: 50%;
+position: absolute;
+bottom: -3rem;
+
+box-shadow:var(--profileShadow)
+}
+
+.ProfileName{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 3rem;
+   gap: 10px;
+   
+}
+.ProfileName>span:nth-of-type(1){
+   font-weight: bold;
+}
+
+.followStatus{
+   display:flex;
+   flex-direction:column;
+   align-items: center;
+   justify-content: center;
+   gap:0.75rem;
+}
+
+.followStatus>hr{
+   width: 85%;
+   border: 1px solid var(--hrColor);
+   
+}
+
+.followStatus> div {
+   display: flex;
+   width: 80%; 
+   gap: 1rem;
+   justify-content: space-around;
+   align-items: center;
+   
+}
+
+.follow{
+   display: flex;
+   flex-direction: column;
+   gap: 0.4rem;
+   align-items: center;
+   justify-content: center;
+ }
+
+ .follow>span:nth-of-type(1){
+   font-weight: bold;
+   
+ } 
+
+ .follow>span:nth-of-type(2){
+   color:rgb(132, 131, 131);
+   font-size: 13px;
+ }
+
+ .vl{
+   height:150%;
+   border-left: 2px solid var(--hrColor);
+ }
+.ProfileCard>span{
+   font-weight: bold;
+   color: rgba(42, 39, 39, 0.891);
+   /* background:linear-gradient(106deg,rgba(104, 100, 100, 0.99),rgba(52, 33, 32, 0.315) 10%); */
+
+   display: flex;
+   align-self:center;
+   margin-bottom: 1rem;
+   
+}
+
+
+
+/* 
+
+.ProfileCard{
+   border-radius: 1.5rem;
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   gap: 1rem;
+   overflow-x: clip;
+   background: var(--cardColor);
+}
+
+.ProfileImage{
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.ProfileImage>img:nth-of-type(1){
+   width: 100%;
+}
+
+.ProfileImage>img:nth-of-type(2)
+{
+   width: 6rem;
+   border-radius: 50%;
+   position: absolute;
+   bottom: -3rem;
+   box-shadow: var(--profileShadow);
+}
+
+.ProfileName{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 3rem;
+   gap: 10px;
+}
+
+.ProfileName>span:nth-of-type(1)
+{
+   font-weight: bold;
+}
+
+
+.followStatus {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 0.75rem;
+ }
+ 
+ .followStatus > hr {
+   width: 85%;
+   border: 1px solid var(--hrColor);
+ }
+ 
+ .followStatus > div {
+   display: flex;
+   gap: 1rem;
+   width: 80%;
+   justify-content: space-around;
+   align-items: center;
+ }
+
+ .follow{
+   display: flex;
+   flex-direction: column;
+   gap: 0.4rem;
+   align-items: center;
+   justify-content: center;
+ }
+
+ .follow>span:nth-of-type(1){
+   font-weight: bold;
+   
+ } 
+
+ .follow>span:nth-of-type(2){
+   color:rgb(132, 131, 131);
+   font-size: 13px;
+ }
+         
+ .vl{
+   height:150%;
+   border-left: 2px solid var(--hrColor);
+ } */
+
+
+
