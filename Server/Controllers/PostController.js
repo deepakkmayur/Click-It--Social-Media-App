@@ -2,6 +2,8 @@
 import PostModal from "../Modals/postModal.js";
 import mongoose from "mongoose";
 
+import UserModel from "../Modals/userModal.js";
+
 
 
 //create newpost
@@ -93,10 +95,17 @@ console.log(error);
 //like and dislike post
 
 export const likePost=async (req,res)=>{
-   const id=req.params.id
+   const postId=req.params.id
    const {userId}=req.body
     try {
-      const post=await PostModal.findById()        
+      const post=await PostModal.findById(postId)  
+      if(!post.likes.includes(userId)){
+         await post.updateOne({$push:{likes:userId}})
+         res.status(200).json("post liked")
+      }else{
+         await post.updateOne({$pull:{likes:userId}})
+         res.status(200).json("post disliked")
+      }
     } catch (error) {
       console.log(error);
       res.status(500).json(error)
@@ -105,4 +114,40 @@ export const likePost=async (req,res)=>{
 }
 
 
+//get timeline post or get our follower's post
+
+export const getTimelinePost=async (req,res)=>{
+   const userId=req.params.id
+   try {
+      const currentUserPosts=await PostModal.find({userId:userId})
+       const followingUsersPosts=await UserModel.aggregate([
+         {
+            $match:{
+               _id:new mongoose.Types.ObjectId(userId)
+            },
+         },
+         {
+            $lookup:{
+               from:'posts',
+               localField:"following",
+               foreignField:"userId",
+               as:"followingPosts"
+            }
+         },{
+            $project:{
+               followingPosts:1,
+               _id:0
+            }
+         }
+       ])
+
+       res.status(200).json(currentUserPosts.concat(...followingUsersPosts[0].followingPosts).sort((a,b)=>{
+         return b.createdAt-a.createdAt
+       })
+       )
+   } catch (error) {
+      
+   }
+
+}
 

@@ -1,14 +1,7 @@
-import PostModal from "./Modals/postModal";
+let array=[2,5,1,0]
 
- export const getPost=async (req,res)=>{
-   const id=req.params.id
-    
-  try {
-   const post=await PostModal.findById(id)
-   res.status(200).json(post)
-  } catch (error) {
-   res.status(500).json(error)
-  }
+let c=array.sort((a,b)=>{
+  return b-a
+})
 
-
- }
+console.log(c);

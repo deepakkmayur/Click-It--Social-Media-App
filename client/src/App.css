@@ -57,6 +57,11 @@
   border: 2px solid black;
 }
 
+.button:disabled{
+  background-color:rgb(11, 141, 222);
+  pointer-events: none;
+}
+
 ::-webkit-scrollbar{
   display: none;
 }
