@@ -12,8 +12,8 @@ function Home() {
       <PostSide/>
       <RightSide/>
       {/* <div className="profileSide">Profile</div> */}
-      <div className="postSide">post</div>
-      <div className="RightSide">right</div>
+      {/* <div className="postSide">post</div> */}
+      {/* <div className="RightSide">right</div> */}
     </div>
   )
 }

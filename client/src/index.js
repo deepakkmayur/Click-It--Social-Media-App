@@ -12,7 +12,7 @@ ReactDOM.render(
   <Routes>
     <Route path="*" element={ <App/>}/>
   </Routes>
-  </BrowserRouter>,
+  </BrowserRouter>
     </Provider>,
   document.getElementById("root")
 );
