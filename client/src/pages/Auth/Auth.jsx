@@ -10,8 +10,9 @@ const Auth = () => {
   const dispatch=useDispatch()
    const {loading}=useSelector((state)=>state.authReducer)
   const [isSignUp, setSignUp] = useState(true);
-  console.log(loading);
+
   const [data,setData]=useState({firstname:"", lastname:"",  username:"",  password:"" ,confirmpass:"" })
+  
 const [confirmPass,setConfirmPass]=useState(true)
 
   const handleChange=(e)=>{

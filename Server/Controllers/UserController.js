@@ -1,12 +1,26 @@
 import UserModel from "../Modals/userModal.js";
 import bcrypt from 'bcrypt'
-import e from "express";
+import jwt from 'jsonwebtoken'
 
+
+//get all users
+export const getAllUser= async (req,res)=>{
+   try {
+    let users=await UserModel.find() 
+    users=users.map((user)=>{  
+      const {password,...otherDetails}=user._doc
+      return otherDetails
+    }) 
+    res.status(200).json(users)
+   } catch (error) {
+     console.log(error); 
+     res.status(500).json(error)
+   }
+}
 
 
 //get user from the database-----------------------------------------------------------------
  export const getUser= async (req,res)=>{
-   console.log(req.params);
   const id=req.params.id
 
 
@@ -32,9 +46,8 @@ const {password,...otherDetails}=user._doc
 
 export const updateUser=async (req,res)=>{         
  const id=req.params.id 
-
- const {currentUserId,currentUserAdminStatus,password}=req.body
- if(id===currentUserId||currentUserAdminStatus){
+ const {_id,currentUserAdminStatus,password}=req.body
+ if(id===_id){  
 
 try {
 
@@ -43,8 +56,13 @@ try {
       req.body.password= await bcrypt.hash(password,salt)
    }
 
-   const user=await UserModel.findOneAndUpdate(id,req.body,{new:true})
-   res.status(200).json(user)
+   const user=await UserModel.findByIdAndUpdate(id,req.body,{new:true})
+   const token=jwt.sign( 
+      {username:user.username,id:user._id },
+      process.env.JWT_KEY,
+      {expiresIn:"1h"}
+   )
+   res.status(200).json({user,token})     
 } catch (error) {
    res.status(500).json(error)
 }
@@ -61,7 +79,6 @@ try {
 export const deleteUser=async (req,res)=>{
    const id=req.params.id
     const {currentUserId,currentUserAdminStatus}=req.body
-    console.log();
     if(currentUserId===id || currentUserAdminStatus){
       try {
          await UserModel.findByIdAndDelete(id)
@@ -84,11 +101,11 @@ export const deleteUser=async (req,res)=>{
 
 export const followUser=async (req,res)=>{
 const id=req.params.id
-const {currentUserId}=req.body
+const {_id}=req.body
 //id=our followers id, currentUserId=our id
 
 //following our own account is restricted
-if(currentUserId===id){
+if(_id===id){
 res.status(403).json("action restricted")
 }else{
 try {
@@ -96,10 +113,10 @@ try {
 
    const followUser=await UserModel.findById(id)
    
-   const followingUser=await UserModel.findById(currentUserId)
-if(!followUser.followers.includes(currentUserId)){
+   const followingUser=await UserModel.findById(_id)
+if(!followUser.followers.includes(_id)){
    //pushing our id into the follower's accouct
-     await followUser.updateOne({$push:{followers:currentUserId}})
+     await followUser.updateOne({$push:{followers:_id}})
    //pushing follower's id to our accouct
      await followingUser.updateOne({$push:{following:id}})
      res.status(200).json("user followed")
@@ -122,11 +139,11 @@ if(!followUser.followers.includes(currentUserId)){
 
 export const UnfollowUser=async (req,res)=>{
    const id=req.params.id
-   const {currentUserId}=req.body
-   //id=our follower's id, currentUserId=our id
+   const {_id}=req.body
+   //id=our follower's id, _id=our id
    
    //following our own account is restricted (not required)   
-   if(currentUserId===id){
+   if(_id===id){
    res.status(403).json("action restricted")
    }else{
    try {
@@ -134,11 +151,11 @@ export const UnfollowUser=async (req,res)=>{
    
       const followUser=await UserModel.findById(id)
       
-      const followingUser=await UserModel.findById(currentUserId)
+      const followingUser=await UserModel.findById(_id)
       //  ! is removed from follow a user
-   if(followUser.followers.includes(currentUserId)){
+   if(followUser.followers.includes(_id)){
       //removing our id from the follower's accouct
-        await followUser.updateOne({$pull:{followers:currentUserId}})
+        await followUser.updateOne({$pull:{followers:_id}})
       //removing follower's id from our accouct
         await followingUser.updateOne({$pull:{following:id}})
         res.status(200).json("user Unfollowed")

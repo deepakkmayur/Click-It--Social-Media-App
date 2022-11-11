@@ -9,11 +9,12 @@ import UserModel from "../Modals/userModal.js";
 //create newpost
 
 export const createPost=async (req,res)=>{
+   
    const newPost=new PostModal(req.body)
 
    try {
       await newPost.save()
-      res.status(200).json("post created")
+      res.status(200).json(newPost)
    } catch (error) {
       console.log(error);
 
@@ -25,10 +26,16 @@ export const createPost=async (req,res)=>{
 
 export const getPost=async (req,res)=>{
     const id=req.params.id
+    console.log("....................................get post");
+    console.log(id,"....................................get post");
+
+    
+
 
     try {
      const post=await PostModal.findById(id) 
-
+    console.log(post,"....................................get post");
+     
      res.status(200).json(post)
     } catch (error) {
       console.log(error);
@@ -98,7 +105,7 @@ export const likePost=async (req,res)=>{
    const postId=req.params.id
    const {userId}=req.body
     try {
-      const post=await PostModal.findById(postId)  
+      const post=await PostModal.findById(postId)        
       if(!post.likes.includes(userId)){
          await post.updateOne({$push:{likes:userId}})
          res.status(200).json("post liked")
@@ -135,8 +142,8 @@ export const getTimelinePost=async (req,res)=>{
             }
          },{
             $project:{
-               followingPosts:1,
-               _id:0
+               followingPosts:1,      
+               _id:0  
             }
          }
        ])

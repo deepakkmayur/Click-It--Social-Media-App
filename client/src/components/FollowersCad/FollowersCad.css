@@ -38,3 +38,11 @@
    padding-left: 20px;
    padding-right: 20px;
 }
+
+.UnfollowButton{
+   /* background-color: rgb(15, 156, 231); */
+   color: black;
+   border: 2px solid;
+   background: transparent;
+   cursor: pointer;
+}

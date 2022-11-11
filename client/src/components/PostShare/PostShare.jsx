@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import img from '../../img/profileImg.jpg';
+import profileImage from '../../img/profileImg.jpg';
 import './PostShare.css';
 import { UilScenery } from "@iconscout/react-unicons";
 import { UilPlayCircle } from "@iconscout/react-unicons"
@@ -8,21 +8,30 @@ import { UilLocationPoint } from "@iconscout/react-unicons"
 import { UilSchedule } from "@iconscout/react-unicons"
 import { UilTimes } from "@iconscout/react-unicons"
 import { useDispatch, useSelector } from 'react-redux';
-import { uploadImage } from '../../api/uploadRequest';
+import { uploadImage,uploadPost } from '../../actions/uploadAction';
+// import PostShare
 
 const PostShare = () => {
-
+   const loading=useSelector((state)=>state.postReducer.uploading)
    const [image, setImage] = useState(null)
    const imageRef = useRef()
    const desc = useRef()
    const { user } = useSelector((state) => state.authReducer.authData)
    const dispatch=useDispatch()
 
+  const serverPublic=process.env.REACT_APP_PUBLIC_FOLDER
+
+
    const onImageChange = (event) => {
       if (event.target.files && event.target.files[0]) {
          let img = event.target.files[0]
          setImage(img)
       }
+   }
+
+   const reset=()=>{
+      setImage(null)
+      desc.current.value=""
    }
 
    const handleSubmit = (event) => {
@@ -44,14 +53,17 @@ const PostShare = () => {
          console.log(error);
       }
    }
+   // console.log(newPost,"///////////////////////////////////////////////////");
+   dispatch(uploadPost(newPost))
+   reset()
    }
-
+      
 
 
 
    return (
       <div className="PostShare">
-         <img src={img} alt="" />
+         <img src={user.profilePicture?serverPublic+user.profilePicture:serverPublic+"defaultProfile.jpg"} alt="" />
          <div>
             <input ref={desc} required type="text" placeholder="what's happening " />
             <div className="postOptions">
@@ -74,8 +86,8 @@ const PostShare = () => {
                   schedule
                </div>
 
-               <button className='button ps-button' onClick={handleSubmit}>
-                  Share
+               <button className='button ps-button' onClick={handleSubmit} disabled={loading}>
+                  {loading?"uploading...":"Share"}
                </button>
                <div style={{ display: "none" }}>
                   <input type="file" name='myImage' ref={imageRef} onChange={onImageChange} />

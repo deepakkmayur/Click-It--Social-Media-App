@@ -13,8 +13,9 @@ import UploadRoute from './Routes/UploadRoute.js'
 
 const app=express()    
 
-//Routes
-
+//to server images for public
+app.use(express.static('public'))
+app.use('/images',express.static('images'))
 
 
 //Middleware
@@ -27,16 +28,16 @@ dotenv.config()
 
 mongoose.connect(process.env.MONGO_DB,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(()=>{
-   app.listen(process.env.PORT,()=>{console.log(`port is listining at ${process.env.PORT}`);})
+   app.listen(process.env.PORT,()=>{console.log(`port is listining at ${process.env.PORT}`);})            
 }).catch((error)=>{console.log(error);})
 
 
 
 //Usage of routes
 app.use('/auth',AuthRoute)
-app.use('/user',UserRoute)
+app.use('/user',UserRoute)                      
 app.use('/post',PostRoute)
-app.use('/upload',UploadRoute)
+app.use('/upload',UploadRoute )
 
 //error handling middleware
 

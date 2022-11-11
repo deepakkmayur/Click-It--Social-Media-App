@@ -1,0 +1,68 @@
+.buttonFollow{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color:white;
+   border: none;
+   border-radius: 0.5rem;
+   background:linear-gradient(106.23deg,rgba(19, 18, 18, 0.909) ,rgba(198, 135, 10, 0.424) 100%)  ;
+   transition: all 100ms ease-out;
+   
+ 
+ }
+ 
+ .buttonFollow:hover{
+   cursor: pointer;
+   color: #151414d3;
+   /* background:linear-gradient(106.23deg,rgba(251, 91, 5, 0.778) ,rgba(242, 90, 8, 0.817) 100%)  ; */
+   background:transparent;
+   border: 2px solid black;
+ }
+ 
+ .buttonFollow:disabled{
+   background-color:rgb(11, 141, 222);
+   pointer-events: none;
+ }
+
+ .fc-buttonFollow{
+   height: 2rem;
+   padding-left: 20px;
+   padding-right: 20px;
+}
+ 
+
+
+
+.buttonUnFollow{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color:white;
+   border: none;
+   border-radius: 0.5rem;
+   /* background:linear-gradient(106.23deg,rgba(1, 2, 2, 0.909) ,rgba(0, 0, 0, 0.424) 100%)  ; */
+   background:rgb(53, 133, 253)  ;
+   transition: all 100ms ease-out;   
+   
+ 
+ }
+ 
+ .buttonUnFollow:hover{
+   cursor: pointer;
+   color: #151414d3;
+   /* background:linear-gradient(106.23deg,rgba(251, 91, 5, 0.778) ,rgba(242, 90, 8, 0.817) 100%)  ; */
+   background:transparent;
+   border: 2px solid black;
+ }
+ 
+ .buttonUnFollow:disabled{
+   background-color:rgb(11, 141, 222);
+   pointer-events: none;
+ }
+
+ .fc-buttonUnFollow{
+   height: 2rem;
+   padding-left: 20px;
+   padding-right: 20px;
+}
+ 
