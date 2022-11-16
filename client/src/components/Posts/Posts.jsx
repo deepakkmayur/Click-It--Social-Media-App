@@ -9,15 +9,15 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 const Posts = () => {
-  
   const dispatch=useDispatch()
-  const {user}=useSelector((state)=>state.authReducer.authData)             
   const params=useParams()
+  
+  const {user}=useSelector((state)=>state.authReducer.authData)    
+  let {posts,loading}=useSelector((state)=>state.postReducer)      
 
-  let {posts,loading}=useSelector((state)=>state.postReducer)
 
   useEffect(()=>{
-    dispatch(getTimelinePosts(user._id))
+    dispatch(getTimelinePosts(user._id))   
   },[])
 
 //  const [time,setTime] = useState([])
@@ -26,14 +26,11 @@ const Posts = () => {
     if(params.id){
       posts=posts.filter((post)=>post.userId===params.id)
     } 
-
-
-
   return (
     <div className="Posts">
       {loading?"Fetching posts...":
       posts.map((post,id)=>{
-    return <Post data={post} id={id}/>
+    return <Post data={post} key={id}/>
       })}
     </div>
   )

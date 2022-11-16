@@ -27,10 +27,6 @@ export const createPost=async (req,res)=>{
 export const getPost=async (req,res)=>{
     const id=req.params.id
     console.log("....................................get post");
-    console.log(id,"....................................get post");
-
-    
-
 
     try {
      const post=await PostModal.findById(id) 
@@ -105,7 +101,9 @@ export const likePost=async (req,res)=>{
    const postId=req.params.id
    const {userId}=req.body
     try {
-      const post=await PostModal.findById(postId)        
+      const post=await PostModal.findById(postId)    
+   console.log(post,"/////////////////////////////////post server");
+
       if(!post.likes.includes(userId)){
          await post.updateOne({$push:{likes:userId}})
          res.status(200).json("post liked")
@@ -127,7 +125,8 @@ export const getTimelinePost=async (req,res)=>{
    const userId=req.params.id
    try {
       const currentUserPosts=await PostModal.find({userId:userId})
-       const followingUsersPosts=await UserModel.aggregate([
+       const followingUsersPosts=await UserModel.aggregate(
+         [
          {
             $match:{
                _id:new mongoose.Types.ObjectId(userId)
@@ -148,12 +147,16 @@ export const getTimelinePost=async (req,res)=>{
          }
        ])
 
+     console.log(followingUsersPosts,"//////////////////followingUsersPosts");
+     console.log(currentUserPosts,"//////////////////currentUserPosts");
+     
+
        res.status(200).json(currentUserPosts.concat(...followingUsersPosts[0].followingPosts).sort((a,b)=>{
          return b.createdAt-a.createdAt
        })
        )
    } catch (error) {
-      
+      console.log(error);
    }
 
 }

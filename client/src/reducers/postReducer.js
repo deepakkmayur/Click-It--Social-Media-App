@@ -12,12 +12,18 @@ const postReducer=(
          case "UPLOAD_FAILED":
             return {...state,uploading:false,error:true} 
 
-
           
-         case "LIKE_START":
-            return {...state,likedpost:false,error:false}   
-         case "LIKE_SUCCESS":
-            return {}
+            case "RETREIVING_START":
+               return { ...state, loading: true, error: false };
+             case "RETREIVING_SUCCESS":
+               return { ...state, posts: action.data, loading: false, error: false };
+             case "RETREIVING_FAIL":
+               return { ...state, loading: false, error: true };
+          
+         // case "LIKE_START":
+         //    return {...state,likedpost:false,error:false}   
+         // case "LIKE_SUCCESS":
+         //    return {}
             
       default:
          return state

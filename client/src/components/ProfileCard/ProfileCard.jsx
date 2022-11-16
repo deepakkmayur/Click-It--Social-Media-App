@@ -10,7 +10,6 @@ function ProfileCard({location}) {
   const {user}=useSelector((state)=>state.authReducer.authData)
     const posts=useSelector((state)=>state.postReducer.posts)
   const serverPublic=process.env.REACT_APP_PUBLIC_FOLDER
-  // const ProfilePage = false
   return (
     <div className="ProfileCard">
       <div className="ProfileImage">
