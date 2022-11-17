@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import "./Post.css";
 import Comment from "../../img/comment.png";
-import Share from "../../img/share.png";
+import Delete from "../../img/delete.png";
 import Heart from "../../img/like.png";
 import NotLike from "../../img/notlike.png";
 import { useDispatch, useSelector } from "react-redux";
 import { likePost } from "../../api/PostRequest";
-// import { likePost } from '../../actions/postAction'
+import { deletePost } from '../../actions/postAction'
+
+import Comments from "../Comments/Comments";
 
 const Post = ({ data }) => {   
-  console.log(data, "data.........");
+ 
 
   const { user } = useSelector((state) => state.authReducer.authData);
   let { posts } = useSelector((state) => state.postReducer);
-
+  console.log(data.userId, "data.........new");
+  console.log(user._id,"user........new");
   const [liked, setLiked] = useState(data.likes.includes(user._id));
 
   const [likes, setLikes] = useState(data.likes.length);
@@ -23,11 +26,25 @@ const Post = ({ data }) => {
   const handleLikes = () => {
     setLiked((prev) => !prev);
     likePost(data._id, user._id);
-    // dispatch(likePost(data._id,user._id))
     liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1);
   };
+  
 
-  const handleDelete = (postId) => {};
+  console.log(user,"user._id........");
+  const handleDelete = (postId) => {      
+    console.log(postId,"postId......");  
+    dispatch(deletePost(postId,user._id))
+  };
+
+
+let state
+if(user._id==data.userId){
+  state=true
+}else{
+  state=false
+}
+
+
 
   return (
     <div className="Post">
@@ -46,7 +63,11 @@ const Post = ({ data }) => {
           style={{ cursor: "pointer" }}
         />
         <img src={Comment} alt="" />
-        <img src={Share} onClick={() => handleDelete(data._id)} alt="" />
+        {state?<img src={Delete} className="delete-icon" onClick={() => handleDelete(data._id)} alt="" />:""}
+        
+      </div>
+      <div>
+        <Comments/>
       </div>
 
       <span style={{ color: "grey", fontSize: "12px" }}>{likes} likes</span>

@@ -9,6 +9,7 @@ import UserModel from "../Modals/userModal.js";
 //create newpost
 
 export const createPost=async (req,res)=>{
+   console.log("//////",req.body,"req body create post");
    
    const newPost=new PostModal(req.body)
 
@@ -26,11 +27,9 @@ export const createPost=async (req,res)=>{
 
 export const getPost=async (req,res)=>{
     const id=req.params.id
-    console.log("....................................get post");
 
     try {
      const post=await PostModal.findById(id) 
-    console.log(post,"....................................get post");
      
      res.status(200).json(post)
     } catch (error) {
@@ -46,6 +45,9 @@ export const getPost=async (req,res)=>{
 export const updatePost=async (req,res)=>{
    const postId=req.params.id
    const {userId}=req.body
+   // console.log("here");
+   // console.log(req.body.id,"eeeee");
+   // console.log("last");
 
    try {
       const post=await PostModal.findById(postId)
@@ -66,27 +68,32 @@ export const updatePost=async (req,res)=>{
 //delete a post
 
 export const deletePost=async (req,res)=>{
+ 
+   // const postId=req.params.id
+   // const {userId} =req.body
+
    const postId=req.params.id
-   // console.log(postId,"/////postId////");
-   const {userId} =req.body
-   // console.log(userId,"////userId/////");
+   
+   const userId =req.params.userId
 
 try {
    const post=await PostModal.findById(postId) 
+ 
 
-   // console.log(req.body,"////req.body/////");
-   // console.log(post,"...post...");
+   console.log("req. params userId",req.params.userId);
+   console.log("req. params id",req.params.id);
+   console.log("post user id",post.userId);
    
    if(post?.userId===userId){
-      await post.deleteOne()
-      res.status(200).json("post deleted successufully")               
+      console.log("finally here------");
+      const response = await post.deleteOne()
+      res.status(200).json({message:"post deleted successufully", response})               
    }else{
-      // console.log("....................22");
-
+      console.log("lese  here------");
+   
       res.status(403).json("action forbidden")
    }
 } catch (error) {
-   // console.log("....................33");
 console.log(error);
   res.status(500).json(error) 
 }
@@ -102,7 +109,6 @@ export const likePost=async (req,res)=>{
    const {userId}=req.body
     try {
       const post=await PostModal.findById(postId)    
-   console.log(post,"/////////////////////////////////post server");
 
       if(!post.likes.includes(userId)){
          await post.updateOne({$push:{likes:userId}})
@@ -147,8 +153,6 @@ export const getTimelinePost=async (req,res)=>{
          }
        ])
 
-     console.log(followingUsersPosts,"//////////////////followingUsersPosts");
-     console.log(currentUserPosts,"//////////////////currentUserPosts");
      
 
        res.status(200).json(currentUserPosts.concat(...followingUsersPosts[0].followingPosts).sort((a,b)=>{

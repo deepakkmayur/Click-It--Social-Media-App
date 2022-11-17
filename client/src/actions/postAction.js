@@ -1,31 +1,29 @@
 import * as PostApi from '../api/PostRequest'
 
 export const getTimelinePosts=(id)=> async(dispatch)=>{
-   dispatch({type:"RETREIVING_START"})
+   dispatch({type:"TIMELINE_RETREIVING_START"})
    try {
       const {data} =await PostApi.getTimelinePosts(id)  
-   dispatch({type:"RETREIVING_SUCCESS",data:data})
+   dispatch({type:"TIMELINE_RETREIVING_SUCCESS",data:data})
 
    } catch (error) {
       console.log(error);
-   dispatch({type:"RETREIVING_FAIL"})
+   dispatch({type:"TIMELINE_RETREIVING_FAIL"})
       
    }
 }
 
-             
-    
 
-// export const likePost=(postId,userId)=>async (dispatch)=>{
-// dispatch({type:"LIKE_START"})
-// try {
-//    const {data}=await PostApi.getLikePost(postId,userId)
-//    console.log("//////................................./postaction data true////////////////",data);
-//    dispatch({type:"LIKE_SUCCESS"})
-// } catch (error) {
-//    console.log("//////................................./postaction data error////////////////");  
+export const deletePost=(postId,userId)=>async (dispatch)=>{
 
-//    dispatch({type:"LIKE_FAILED",})  
-//    console.log(error);  
-// }
-// }
+   dispatch({type:"DELETE_START"})
+   try {
+      const {data}=await PostApi.deletePost(postId,userId)
+      console.log("daaaata", data);
+   dispatch({type:"DELETE_SUCCESS",data:data.response}) 
+   } catch (error) {
+      console.log(error); 
+   dispatch({type:"DELETE_FAILED"}) 
+
+   }
+}

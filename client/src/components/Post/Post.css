@@ -22,3 +22,10 @@
     gap: 1.5rem;
 }
 
+
+.delete-icon{
+    height: 30px;
+    padding-bottom: 2px;
+    cursor: pointer;
+    /* width: 20px; */
+}

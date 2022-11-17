@@ -102,6 +102,7 @@ export const deleteUser=async (req,res)=>{
 export const followUser=async (req,res)=>{
 const id=req.params.id
 const {_id}=req.body
+console.log(req.body,"follow");
 //id=our followers id, currentUserId=our id
 
 //following our own account is restricted

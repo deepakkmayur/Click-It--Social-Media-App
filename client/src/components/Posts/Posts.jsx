@@ -1,7 +1,7 @@
 import React from 'react'
 import './Posts.css'
 import Post from '../Post/Post'
-import {useDispatch,useSelector} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'    
 import { useEffect } from 'react'
 import { getTimelinePosts } from '../../actions/postAction'
 import { useState } from 'react'
@@ -9,18 +9,18 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 const Posts = () => {
+
+
   const dispatch=useDispatch()
   const params=useParams()
   
-  const {user}=useSelector((state)=>state.authReducer.authData)    
+  const {user}=useSelector((state)=>state.authReducer.authData)               
   let {posts,loading}=useSelector((state)=>state.postReducer)      
-
-
+  
   useEffect(()=>{
     dispatch(getTimelinePosts(user._id))   
   },[])
-
-//  const [time,setTime] = useState([])
+  
   
     if(!posts) return "no posts available"  
     if(params.id){

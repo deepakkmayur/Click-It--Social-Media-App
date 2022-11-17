@@ -1,0 +1,14 @@
+/* .comment{
+ 
+} */
+
+.input-box{
+   /* outline: none; */
+   border-style: none ;
+   background-color: rgb(176, 176, 176);
+    width:100%;
+   height:30px;
+   border-radius: 10px;
+   
+
+}
