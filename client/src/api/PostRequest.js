@@ -9,11 +9,12 @@ export const getTimelinePosts=(id)=>API.get(`/post/${id}/timeline`)
 export const likePost=(id,userId)=>API.put(`/post/${id}/like`,{userId:userId})  
 
 
-// export const deletePost=(postId,postData)=>API.delete(`/post/${postId}/delete`,postData)
 
 
 export const deletePost=(postId,userId)=>API.delete(`/post/${postId}/${userId}/delete`)
-// export const deletePost=(postId,postData)=>{console.log("///.././",postId,postData,"postId,postData")}
+
+export const postComment=(comment,postId,userId)=>API.put(`/post/${postId}/${userId}/comment`,comment)
+// export const postComment=(comment,postId,userId)=>{console.log("]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",comment,postId,userId,"reached api");}
 
 
           

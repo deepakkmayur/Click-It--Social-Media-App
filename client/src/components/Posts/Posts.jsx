@@ -22,6 +22,7 @@ const Posts = () => {
   },[])
   
   
+  console.log(params.id,"params//////");              
     if(!posts) return "no posts available"  
     if(params.id){
       posts=posts.filter((post)=>post.userId===params.id)

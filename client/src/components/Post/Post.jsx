@@ -12,14 +12,13 @@ import Comments from "../Comments/Comments";
 
 const Post = ({ data }) => {   
  
-
+  
   const { user } = useSelector((state) => state.authReducer.authData);
   let { posts } = useSelector((state) => state.postReducer);
-  console.log(data.userId, "data.........new");
-  console.log(user._id,"user........new");
   const [liked, setLiked] = useState(data.likes.includes(user._id));
 
   const [likes, setLikes] = useState(data.likes.length);
+  const [comment,setComment]=useState(false)
 
   const dispatch = useDispatch();
 
@@ -28,17 +27,24 @@ const Post = ({ data }) => {
     likePost(data._id, user._id);
     liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1);
   };
+
+
+  const handleCommentState =()=>{
+    setComment((prev)=>{
+       return !prev
+    })
+  }
+
+  console.log(comment,"comment");
   
 
-  console.log(user,"user._id........");
   const handleDelete = (postId) => {      
-    console.log(postId,"postId......");  
     dispatch(deletePost(postId,user._id))
   };
 
 
 let state
-if(user._id==data.userId){
+if(user._id===data.userId){
   state=true
 }else{
   state=false
@@ -48,6 +54,12 @@ if(user._id==data.userId){
 
   return (
     <div className="Post">
+       <div className="detail">
+        <span>
+          <b>{data.name}</b>
+        </span>
+        <span> {data.desc}</span>
+      </div>
       <img
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""}
         alt=""
@@ -62,21 +74,16 @@ if(user._id==data.userId){
           alt=""
           style={{ cursor: "pointer" }}
         />
-        <img src={Comment} alt="" />
+        <img src={Comment} alt="" onClick={handleCommentState} />
         {state?<img src={Delete} className="delete-icon" onClick={() => handleDelete(data._id)} alt="" />:""}
         
       </div>
-      <div>
-        <Comments/>
-      </div>
 
       <span style={{ color: "grey", fontSize: "12px" }}>{likes} likes</span>
-      <div className="detail">
-        <span>
-          <b>{data.name}</b>
-        </span>
-        <span> {data.desc}</span>
+      <div>
+        {comment?<Comments data={data}/>:""}
       </div>
+     
     </div>
   );
 };

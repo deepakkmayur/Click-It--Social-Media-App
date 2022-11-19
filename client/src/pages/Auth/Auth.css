@@ -1,90 +1,140 @@
-.Auth {
+.Auth{
    display: flex;
    align-items: center;
    justify-content: center;
    height: 100vh;
    gap: 4rem;
    position: relative;
- }
- 
- .Auth > div {
+
+}
+
+.Auth>div{
    display: flex;
    align-items: center;
    justify-content: center;
- }
- 
- 
- .a-left{
-     gap: 2rem;
- }
- 
- .a-left > img {
+
+}
+.a-left{
+   gap: 2rem;
+
+}
+
+.a-left>img{
    width: 4rem;
    height: 4rem;
- }
- 
- .Webname > h1 {
-     font-size: 3rem;
-     background-color: rgb(175, 163, 163);
-   
- 
-     /* background-image: var(--buttonBg); */
 
-     background-size: 100%;
-     background-repeat: repeat;
-   
-
-     -webkit-background-clip: text;
-     -webkit-text-fill-color: transparent; 
-     -moz-background-clip: text;
-     -moz-text-fill-color: transparent;
- }
- 
- .Webname>h6{
-     font-size: 0.85rem;
- }
+}
 
 
+.Webname h1{
+   font-size: 3rem;
+   background-color: red;
+   background-image: var(--buttonBg);
+   background-size: 100%;
+   background-repeat: repeat;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   -moz-background-clip: text;
+   -moz-text-fill-color:transparent;
+}
 
- .infoForm{
+.Webname h6{
+   font-size: 0.85rem;
+}
+
+.infoForm{
+  
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   gap: 2rem;
- }
- 
- .infoInput{
+   gap: 3rem;
+   
+}
+
+.infoInput{
+   width: 170px;
    border: none;
    outline: none;
    background-color: var(--inputColor);
    border-radius: 8px;
    padding: 20px;
-   flex:1;
- }
- 
- .infoForm>div{
+   flex: 1;
+  
+
+}
+.passInput{
+   position: relative;
+   right: -20px;
+   width: 400px;
+   bottom:-13px;
+}
+
+.passInput1{
+   position: relative;
+   right: -1px;
+   width: 400px;
+   bottom:-13px;
+}
+
+.passInput12{
+   position: relative;
+   
+   bottom:-13px;
+}
+.validation{
+   display: flex;
+   flex-direction:column;
+   padding: 13px;
+   
+}
+
+.infoForm>div{
    display: flex;
    gap: 1rem;
    height: 2rem;
-   width: 90%;
- }
- 
- .infoButton{
+   width: 100%;
+}
+
+.infoButton{
    width: 6rem;
    height: 2rem;
    align-self: flex-end;
- }
- 
- 
- .authForm{
-     background-color:white;
-     border-radius: 1rem;
-     padding: 1rem;
- }
- 
- .authForm>div{
-     width: 100%;
-     align-items: center;
-     justify-content: center;
- }
+
+}
+.authForm{
+   width: 450px;
+   background-color: var(--cardColor);
+   border-radius: 1rem;
+   padding: 1rem;
+
+}
+
+.authForm>div{
+   width: 100%;
+   align-items: center;
+   justify-content: center;
+
+}
+.validationPara{
+   color:"red";
+}
+
+.l{
+   width: 404px;
+   gap: 1rem;
+}
+
+@media screen and (max-width:800px) {
+   .infoForm{
+       width: 100%;
+       
+   }
+
+   .infoInput{
+       width: 30px;
+       /* display: flex; */
+       flex-direction: column;
+       
+   }
+}

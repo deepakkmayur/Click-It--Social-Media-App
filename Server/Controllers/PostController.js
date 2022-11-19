@@ -79,17 +79,10 @@ export const deletePost=async (req,res)=>{
 try {
    const post=await PostModal.findById(postId) 
  
-
-   console.log("req. params userId",req.params.userId);
-   console.log("req. params id",req.params.id);
-   console.log("post user id",post.userId);
-   
    if(post?.userId===userId){
-      console.log("finally here------");
       const response = await post.deleteOne()
       res.status(200).json({message:"post deleted successufully", response})               
    }else{
-      console.log("lese  here------");
    
       res.status(403).json("action forbidden")
    }
@@ -163,5 +156,16 @@ export const getTimelinePost=async (req,res)=>{
       console.log(error);
    }
 
+}
+
+
+
+//add comment
+
+export const postComment=async (req,res)=>{
+const postId=req.params.postId
+const userId=req.params.userId
+console.log(req.body,"req.body");
+console.log(postId,userId,"post nd user ID");
 }
 

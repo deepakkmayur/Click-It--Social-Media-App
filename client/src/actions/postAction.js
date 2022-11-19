@@ -19,11 +19,26 @@ export const deletePost=(postId,userId)=>async (dispatch)=>{
    dispatch({type:"DELETE_START"})
    try {
       const {data}=await PostApi.deletePost(postId,userId)
-      console.log("daaaata", data);
    dispatch({type:"DELETE_SUCCESS",data:data.response}) 
    } catch (error) {
       console.log(error); 
    dispatch({type:"DELETE_FAILED"}) 
+
+   }
+}
+
+
+export const postComment=(comment,postId,userId)=>async (dispatch)=>{
+
+   console.log(comment,postId,userId,"reached here---------------------comments");
+   dispatch({type:"COMMENT_START"})
+   try {
+      // const {data}= await PostApi.postComment(comment,postId,userId)
+   dispatch({type:"COMMENT_Success",data:comment})
+       
+   } catch (error) {
+      console.log(error);
+   dispatch({type:"COMMENT_FAILED"})
 
    }
 }

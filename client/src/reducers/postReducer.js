@@ -1,5 +1,5 @@
 const postReducer = (
-  state = { posts: [], loading: false, error: false, uploading: false },
+  state = { posts: [], loading: false, error: false, uploading: false },     
   action     
 ) => {
   switch (action.type) {
@@ -30,10 +30,20 @@ const postReducer = (
     case "DELETE_START":
       return { ...state, loading: true, error: false };
     case "DELETE_SUCCESS":
-      console.log("action data",action.data);    
       return { ...state, posts: state.posts.filter((post) => post._id !== action.data._id), loading: false, error: false };
     case "DELETE_FAILED":
       return { ...state, loading: false, error: true };
+
+
+
+    // case "COMMENT_START":
+    //   return { ...state, loading: true, error: false };
+    // case "COMMENT_Success":
+    //   return { ...state, posts:action.data, loading: false, error: false };
+    // case "COMMENT_FAILED":
+    //   return { ...state, loading: false, error: true };
+
+
     default:
       return state;
   }

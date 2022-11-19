@@ -1,5 +1,5 @@
 import express from "express";
-import {createPost,getPost,updatePost,deletePost,likePost, getTimelinePost} from '../Controllers/PostController.js'
+import {createPost,getPost,updatePost,deletePost,likePost, getTimelinePost,postComment} from '../Controllers/PostController.js'
 
 
 
@@ -15,6 +15,7 @@ router.put('/:id',updatePost)
 router.delete('/:id/:userId/delete',deletePost)   
 router.put('/:id/like',likePost)
 router.get('/:id/timeline',getTimelinePost)
+router.put('/:postId/:userId/comment',postComment)
 
 
 
