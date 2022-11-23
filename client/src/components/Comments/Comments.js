@@ -35,7 +35,7 @@ const Comments = (data) => {
 
   return (
     <div >
-      <form  action='submit'  onSubmit={handleCommentSubmit} >
+      <form  action='submit'  onSubmit={handleCommentSubmit} >       
       <div className="comments">
          
          {comments.map((ele)=>{
