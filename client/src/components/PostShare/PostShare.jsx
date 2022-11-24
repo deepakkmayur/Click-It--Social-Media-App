@@ -73,16 +73,16 @@ const PostShare = () => {
                   photo
                </div>
                <div className="option" style={{ color: "red" }}>
-                  <UilPlayCircle />
-                  video
+                  {/* <UilPlayCircle /> */}
+                  {/* video */}
                </div>
                <div className="option" style={{ color: "green" }}>
-                  <UilLocationPoint />
-                  location
+                  {/* <UilLocationPoint /> */}
+                  {/* location */}
                </div>
                <div className="option" style={{ color: "orange" }}>
-                  <UilSchedule />
-                  schedule
+                  {/* <UilSchedule /> */}
+                  {/* schedule */}
                </div>
 
                <button className='button ps-button' onClick={handleSubmit} disabled={loading}>

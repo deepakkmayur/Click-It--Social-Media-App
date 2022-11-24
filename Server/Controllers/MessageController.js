@@ -1,4 +1,4 @@
-import MessageModel from '../Models/messageModal.js'
+import MessageModel from '../Modals/messageModal.js'
 
 
 export const addMessage = async(req,res) =>{

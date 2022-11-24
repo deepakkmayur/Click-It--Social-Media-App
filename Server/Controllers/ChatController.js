@@ -9,9 +9,10 @@ export const createChat = async (req,res) => {
             members : [req.body.senderId, req.body.receiverId],
         }
     );
-
+       console.log("newChat",newChat);     
     try {
-        const result = await newChat.save()
+        const result = await newChat.save() 
+        console.log("result",result);   
         res.status(200).json(result)
         
     } catch (error) {

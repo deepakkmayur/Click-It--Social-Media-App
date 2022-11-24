@@ -16,7 +16,7 @@ const Comments = (data) => {
            const [enteringComment,setEnteringComment]=useState({text:"",postId:data.data._id})   
            
            
-           
+                                                                           
            const handleComment=(event)=>{
               setEnteringComment((prev)=>{
                return {...prev,text:event.target.value}

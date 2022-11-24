@@ -1,6 +1,8 @@
 .FollowerCad{
    width: 100%;
-   border-radius: 0.7rem;
+   /* border-radius: 0.7rem; */
+   border-radius:50px;
+
    gap: 1rem;
    display: flex;
    flex-direction: column;
@@ -21,6 +23,7 @@
 .followerImg{
    width:3.2rem;
    height: 3.2rem;
+   border-radius: 50px;
 }
 .name{
    display: flex;

@@ -33,7 +33,7 @@ export const postComment=(comment,postId,userId)=>async (dispatch)=>{
    console.log(comment,postId,userId,"reached here---------------------comments");
    dispatch({type:"COMMENT_START"})
    try {
-      // const {data}= await PostApi.postComment(comment,postId,userId)
+      const {data}= await PostApi.postComment(comment,postId,userId)
    dispatch({type:"COMMENT_Success",data:comment})
        
    } catch (error) {
