@@ -38,7 +38,7 @@ const Post = ({ data }) => {
     })
   }
 
-  console.log(comment,"comment");
+  console.log(comment,"-----------------------------------comment//////////");
   
 
   const handleDelete = (postId) => {      
@@ -53,21 +53,16 @@ if(user._id===data.userId){
   state=false
 }
  
-const [userData,setUserData]=useState([])
+const [userData,setUserData]=useState([])       
 
 useEffect(()=>{
   const fetchAllUsers=async()=>{
     let {data}= await getAllUser()
-    console.log("/////data inside/////");
-    console.log(data,"///////data inside");
     setUserData(data)
   }
   fetchAllUsers()
 },[])
 
-
-console.log(userData,"//////////////////allUserDetails//////////////////");  
-console.log(data.userId,"//////////////////data//////////////////");  
 
   return (
     <div className="Post">

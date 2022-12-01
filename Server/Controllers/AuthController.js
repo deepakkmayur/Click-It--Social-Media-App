@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken'
 
 
 
+
 //registering a new user
 export const registerUser=async(req,res)=>{
    
@@ -39,17 +40,26 @@ export const loginUser=async (req,res)=>{
 
    try {
       const user=await UserModel.findOne({username:username})
+     
       if(user){
-         const validity=await bcrypt.compare(password,user.password)
-          if(!validity){
-            res.status(400).json("Wrong password")
-          }else{
-           const token=jwt.sign({ username:user.username, id:user._id},process.env.JWT_KEY,{expiresIn:'1hr'})
-             res.status(200).json({user,token})
-          }
+         
+     if(!user.isBlocked){
+      const validity=await bcrypt.compare(password,user.password)
+      if(!validity){
+        res.status(400).json("Wrong password")
+      }else{
+       const token=jwt.sign({ username:user.username, id:user._id},process.env.JWT_KEY,{expiresIn:'1hr'})
+         res.status(200).json({user,token})
+      }
+   }else{
+      
+      console.log("blocked");
+   }
       }else{
          res.status(404).json("User dosen't exist")
       }
+
+
 
 
    } catch (error) {

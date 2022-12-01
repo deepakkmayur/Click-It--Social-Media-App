@@ -1,48 +1,48 @@
-.FollowerCad{
-   width: 100%;
-   border-radius: 0.7rem;
-   gap: 1rem;
-   display: flex;
-   flex-direction: column;
-   font-size:13px;
+.FollowerCad {
+  width: 100%;
+  border-radius: 0.7rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: inherit;
+  font-size: 13px;
 }
 
-.follower{
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+.follower {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.follower>div{
-   display: flex;
-   gap: 10px;
+.follower > div {
+  display: flex;
+  gap: 10px;
 }
 
-.followerImg{
-   width:3.2rem;
-   height: 3.2rem;
+.followerImg {
+  width: 3.2rem;
+  height: 3.2rem;
 }
-.name{
-   display: flex;
-   flex-direction: column;
-   align-items: flex-start;
-   justify-content: center;
-}
-
-.name>span:nth-of-type(1){
- font-weight: bold;
+.name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 
-.fc-button{
-   height: 2rem;
-   padding-left: 20px;
-   padding-right: 20px;
+.name > span:nth-of-type(1) {
+  font-weight: bold;
 }
 
-.UnfollowButton{
-   /* background-color: rgb(15, 156, 231); */
-   color: black;
-   border: 2px solid;
-   background: transparent;
-   cursor: pointer;
+.fc-button {
+  height: 2rem;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.UnfollowButton {
+  /* background-color: rgb(15, 156, 231); */
+  color: black;
+  border: 2px solid;
+  background: transparent;
+  cursor: pointer;
 }

@@ -8,6 +8,8 @@ import Comment from '../../img/comment.png'
 import TrendCard from '../TrendCard/TrendCard'
 import ShareModal from '../ShareModal/ShareModal'
 import {Link} from 'react-router-dom'
+import ChatLandingPage from '../ChatLandingPage/ChatLandingPage'
+
 const RightSide = () => {
 
 
@@ -31,7 +33,9 @@ const [modalOpened,setModalOpened]=useState(false)
 
      </div>
 
-     <TrendCard/>
+     {/* <TrendCard/> */}
+     <ChatLandingPage/>
+     
 
      <button className='button r-button' onClick={()=>setModalOpened(true)} >
          Share

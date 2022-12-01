@@ -1,0 +1,55 @@
+*{
+   margin: 0;
+   padding: 0;
+   /* background-color: white; */
+  
+}
+
+
+.DashboardAside{
+   background-color:black;
+   height: 100vh;
+   width: 250px;
+   color: white;
+}
+
+.userManagement{
+   width: 11rem;
+   height: 2rem;
+position: relative;
+top: 5rem;
+left: 2.5rem;
+background-color: rgb(0, 0, 0);
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+cursor: pointer;
+}
+
+.userManagement:hover{
+   background-color: aliceblue;
+   color: black;
+}
+
+.postManagement{
+   width: 11rem;
+   height: 2rem;
+   background-color: rgb(0, 0, 0);
+   position: relative;
+   top: 6rem;
+   left: 2.5rem;
+   display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+cursor: pointer;
+
+}
+
+.postManagement:hover{
+   background-color: aliceblue;
+   color: black;
+}
+
+

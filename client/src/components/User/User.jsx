@@ -10,10 +10,10 @@ import {createChat} from '../../api/ChatRequests'
 // import "./User.css";
 
 const User = ({ person }) => {  
+
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user } = useSelector((state) => state.authReducer.authData);
 
-  console.log(user,"-------user---");
 
   const [following, setFollowing] = useState(
     person.followers.includes(user._id)
@@ -28,8 +28,8 @@ const User = ({ person }) => {
     setFollowing((prev)=>!prev)
   };
  
-   const chatHandler=()=>{
-    createChat()
+   const chatHandler=async()=>{
+    let u=await createChat(user._id,person._id)
    }
 
   return (
@@ -49,7 +49,7 @@ const User = ({ person }) => {
           {/* <span>@{person.username}</span> */}
         </div>
       </div>
-  <img src={chatIcon} alt="" onClick={chatHandler} /> 
+  <img src={chatIcon} alt=""style={{cursor:"pointer"}} onClick={chatHandler} /> 
       <button className={following?"button fc-button UnfollowButton":"button fc-button  "} onClick={handleFollow}>
         {following ? "Unfollow" : "Follow"}
       </button>

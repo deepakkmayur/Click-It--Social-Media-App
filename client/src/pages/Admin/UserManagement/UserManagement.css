@@ -1,0 +1,31 @@
+
+
+/* .userManagement{
+
+   
+} */
+
+.blockButton{
+   background-color: rgb(255, 0, 8);
+   border: none;
+   height: 35px;
+   width: 80px;
+   border-radius: 15px;
+   cursor: pointer;
+}
+.blockButton:hover{
+   background-color: rgb(190, 87, 87);                                          
+}
+
+.unblockButton{
+   background-color: rgb(0, 255, 4);   
+   border: none;
+   height: 35px;
+   width: 80px;                                      
+   border-radius: 15px;
+   cursor: pointer;
+}
+
+.unblockButton:hover{
+   background-color: rgb(75, 157, 62);  
+}

@@ -11,24 +11,24 @@ const Comments = (data) => {
     const dispatch=useDispatch()
   const { user } = useSelector((state) => state.authReducer.authData);
   const {comments}=useSelector((state)=>state.commentReducer)
-  
+  console.log(user,"////////////user////////----");
 
-           const [enteringComment,setEnteringComment]=useState({text:"",postId:data.data._id})   
+           const [enteringComment,setEnteringComment]=useState({text:"",postId:data.data._id,userId:user._id})   
            
            
                                                                            
            const handleComment=(event)=>{
               setEnteringComment((prev)=>{
-               return {...prev,text:event.target.value}
+               return {...prev,text:event.target.value}    
               })            
             }
             
-            let value
+            // let value
             const handleCommentSubmit=(event)=>{ 
                event.preventDefault()
                
                dispatch(postComment(enteringComment))
-               setEnteringComment({text:"",postId:data.data._id})
+               setEnteringComment({text:"",postId:data.data._id,userId:user._id})
             }
             
 

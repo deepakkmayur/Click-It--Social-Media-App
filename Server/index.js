@@ -32,7 +32,7 @@ dotenv.config()
 
 mongoose.connect(process.env.MONGO_DB,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(()=>{
-   app.listen(process.env.PORT,()=>{console.log(`port is listining at ${process.env.PORT}`);})            
+   app.listen(process.env.PORT,()=>{console.log(`port is listining at ${process.env.PORT}`);})                  
 }).catch((error)=>{console.log(error);})
 
 

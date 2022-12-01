@@ -17,7 +17,6 @@ function FollowersCad() {
     };
     fetchPersons();
   }, []);
-
   return (
     <div className="FollowerCad">
       <h3>People you may know</h3>

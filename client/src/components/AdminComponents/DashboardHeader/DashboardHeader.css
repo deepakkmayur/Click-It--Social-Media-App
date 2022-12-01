@@ -1,0 +1,23 @@
+*{
+   margin: 0;
+   padding: 0;
+}
+
+
+.DashboardHeader{
+   background-color: black;
+   color: white;
+   height: 60px;
+   width:100%;
+}
+
+.heading{
+   width: 250px;
+   height: 30px;
+   position: relative;
+   top: 30px;
+   left: 25px;
+
+   /* margin-top: 50px; */
+}
+

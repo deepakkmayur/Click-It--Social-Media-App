@@ -15,7 +15,7 @@ router.put('/:id',updatePost)
 router.delete('/:id/:userId/delete',deletePost)   
 router.put('/:id/like',likePost)
 router.get('/:id/timeline',getTimelinePost)
-router.put('/:postId/:userId/comment',postComment)
+router.post('/comment',postComment)
 
 
 

@@ -102,7 +102,7 @@ export const deleteUser=async (req,res)=>{
 export const followUser=async (req,res)=>{
 const id=req.params.id
 const {_id}=req.body
-console.log(req.body,"follow");
+// console.log(req.body,"follow");
 //id=our followers id, currentUserId=our id
 
 //following our own account is restricted
@@ -174,5 +174,19 @@ export const UnfollowUser=async (req,res)=>{
    }
 
 
+   export const blockUser=async(req,res)=>{
+    console.log("reached here");
+    console.log(req.params);
+    const user=await UserModel.findById(req.params.userId)   
+    console.log(user,"user");
 
-// module.exports={getUser,}
+    if(user.isBlocked){
+      await user.updateOne({ $set: { isBlocked:false }})
+      console.log("true");
+    }else{
+      await user.updateOne({ $set: {isBlocked:true }})  
+      console.log("false");
+    }
+   }
+   
+

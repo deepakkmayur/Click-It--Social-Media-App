@@ -28,12 +28,13 @@ export const deletePost=(postId,userId)=>async (dispatch)=>{
 }
 
 
-export const postComment=(comment,postId,userId)=>async (dispatch)=>{
+export const postComment=(comment)=>async (dispatch)=>{
 
-   console.log(comment,postId,userId,"reached here---------------------comments");
    dispatch({type:"COMMENT_START"})
    try {
-      const {data}= await PostApi.postComment(comment,postId,userId)
+      const {data}= await PostApi.postComment(comment)
+      console.log(data,"reached here---------------------data----");
+
    dispatch({type:"COMMENT_Success",data:comment})
        
    } catch (error) {

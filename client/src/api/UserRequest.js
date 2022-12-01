@@ -23,3 +23,5 @@ export const getAllUser= ()=>{ return  API.get('/user')}
 
 export const  followUser=(id,data)=>API.put(`/user/${id}/follow`,data)
 export const unFollowUser=(id,data)=>API.put(`/user/${id}/unfollow`,data)
+
+export const blockUser=(userId)=>API.put(`/user/${userId}/blockUser`)

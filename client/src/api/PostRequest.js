@@ -13,8 +13,8 @@ export const likePost = (id, userId) => API.put(`/post/${id}/like`, { userId: us
 
 export const deletePost = (postId, userId) => API.delete(`/post/${postId}/${userId}/delete`)
 
-export const postComment = (comment, postId, userId) => API.put(`/post/${postId}/${userId}/comment`, comment)
-// export const postComment=(comment,postId,userId)=>{console.log("]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",comment,postId,userId,"reached api");}
+export const postComment = (comment) => API.post(`/post/comment`,comment)
+// export const postComment = (comment) => console.log(comment,"comment-----");
 
 
 

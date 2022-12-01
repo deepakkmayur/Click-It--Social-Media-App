@@ -1,18 +1,16 @@
 
-import PostModal from "../Modals/postModal.js";
 import mongoose from "mongoose";
+import PostModal from "../Modals/postModal.js";
 
 import UserModel from "../Modals/userModal.js";
+import CommentModel from "../Modals/CommentModel.js";
 
 
 
 //create newpost
 
 export const createPost=async (req,res)=>{
-   console.log("//////",req.body,"req body create post");
-   
    const newPost=new PostModal(req.body)
-
    try {
       await newPost.save()
       res.status(200).json(newPost)
@@ -45,9 +43,7 @@ export const getPost=async (req,res)=>{
 export const updatePost=async (req,res)=>{
    const postId=req.params.id
    const {userId}=req.body
-   // console.log("here");
-   // console.log(req.body.id,"eeeee");
-   // console.log("last");
+  
 
    try {
       const post=await PostModal.findById(postId)
@@ -68,9 +64,7 @@ export const updatePost=async (req,res)=>{
 //delete a post
 
 export const deletePost=async (req,res)=>{
- 
-   // const postId=req.params.id
-   // const {userId} =req.body
+
 
    const postId=req.params.id
    
@@ -104,7 +98,7 @@ export const likePost=async (req,res)=>{
       const post=await PostModal.findById(postId)    
 
       if(!post.likes.includes(userId)){
-         await post.updateOne({$push:{likes:userId}})
+         await post.updateOne({$push:{likes:userId}})                 
          res.status(200).json("post liked")
       }else{
          await post.updateOne({$pull:{likes:userId}})
@@ -163,9 +157,18 @@ export const getTimelinePost=async (req,res)=>{
 //add comment
 
 export const postComment=async (req,res)=>{
-const postId=req.params.postId
-const userId=req.params.userId
+   console.log("comment----reached");
+
 console.log(req.body,"req.body");
-console.log(postId,userId,"post nd user ID");
+const comments=new CommentModel(req.body)
+try {
+   await comments.save()
+   res.status(200).json({message:"comment added",comments})
+} catch (error) {
+   console.log(error);
+   res.status(500).json(error)
+
+}
+  
 }
 
