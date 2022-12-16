@@ -1,1 +1,1 @@
-export const Default_Url = "http://dtrendz.ml/"
+export const Default_Url = "https://dtrendz.ml/"
