@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { Default_Url } from './Config'
 
-const API=axios.create({baseURL:"http://localhost:5000"})
+const API=axios.create({baseURL:Default_Url})
 export const uploadImage=(data)=>{
    API.post('/upload/',data)
 

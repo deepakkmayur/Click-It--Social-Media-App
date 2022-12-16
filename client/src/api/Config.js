@@ -1,0 +1,1 @@
+export const Default_Url = "http://dtrendz.ml/"
